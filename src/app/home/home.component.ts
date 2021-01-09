@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {EmployeeService} from '../core/services/employee/employee.service';
+import {Observable} from 'rxjs';
+import {Employee} from '../../../services/employeeService';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +11,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  employees: Observable<Employee[]>;
 
-  ngOnInit(): void { }
+  constructor(private router: Router,
+              private employeeService: EmployeeService) {
+  }
+
+  ngOnInit(): void {
+    this.employees = this.employeeService.getEmployees();
+  }
 
 }

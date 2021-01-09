@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 // If you import a module but never use any of the imported values other than as TypeScript types,
 // the resulting javascript file will look as if you never imported the module at all.
-import { ipcRenderer, webFrame, remote } from 'electron';
+import {ipcRenderer, webFrame, remote, IpcRendererEvent} from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
+import {from, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,24 @@ export class ElectronService {
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');
     }
+  }
+
+  // tslint:disable-next-line:ban-types
+  public on(channel: string, listener: (event: IpcRendererEvent, ...args: any[]) => void): void {
+    if (!this.ipcRenderer) {
+      return;
+    }
+    this.ipcRenderer.on(channel, listener);
+  }
+
+  public send(channel: string, ...args): void {
+    if (!this.ipcRenderer) {
+      return;
+    }
+    this.ipcRenderer.send(channel, ...args);
+  }
+
+  public invoke<T>(channel: string): Observable<T> {
+    return from(this.ipcRenderer.invoke(channel));
   }
 }

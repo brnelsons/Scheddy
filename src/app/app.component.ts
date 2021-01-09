@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
+import {ElectronService} from './core/services/electron/electron.service';
 
 @Component({
   selector: 'app-root',
@@ -24,5 +24,7 @@ export class AppComponent {
     } else {
       console.log('Run in browser');
     }
+
+    electronService.invoke('get-employees').subscribe(employees => {console.log(employees);});
   }
 }
