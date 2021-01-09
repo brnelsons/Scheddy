@@ -1,14 +1,7 @@
 import {DayOfTheWeek} from './dayOfTheWeek';
 import {IpcMainEvent} from 'electron';
 import {Availability} from './availability';
-
-export interface Employee {
-  name: string,
-  position: string,
-  maxHoursPerWeek: number,
-  minHoursPerWeek: number,
-  availability: Map<DayOfTheWeek, Availability>,
-}
+import {Employee} from './employee';
 
 export class EmployeeService {
 
@@ -17,7 +10,8 @@ export class EmployeeService {
   constructor(ipcMain: Electron.IpcMain) {
     this.employees = [
       {
-        name: "tim",
+        firstName: "Tim",
+        lastName: "Baker",
         availability: new Map<DayOfTheWeek, Availability>(),
         maxHoursPerWeek: 24,
         minHoursPerWeek: 20,

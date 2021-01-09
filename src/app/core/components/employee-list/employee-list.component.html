@@ -1,0 +1,13 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let employee of employees | async">
+    <mat-expansion-panel-header>
+      <mat-icon mat-list-icon color="primary">account_circle</mat-icon>
+      <div mat-line style="margin-left: 10px; margin-right: 10px">
+        {{employee.lastName}}, {{employee.firstName}}
+      </div>
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      <!--    TODO add employee information-->
+    </mat-panel-description>
+  </mat-expansion-panel>
+</mat-accordion>

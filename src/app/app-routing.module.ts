@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeRoutingModule } from './home/home-routing.module';
 import {EmployeesComponent} from './employees/employees.component';
+import {ScheduleComponent} from './schedule/schedule.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'employees',
     component: EmployeesComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'schedule',
+    component: ScheduleComponent,
     pathMatch: 'full'
   }
 ];
