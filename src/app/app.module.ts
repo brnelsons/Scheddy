@@ -14,6 +14,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
+import { EmployeesComponent } from './employees/employees.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -21,7 +23,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EmployeesComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -30,6 +32,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SharedModule,
     HomeModule,
     AppRoutingModule,
+    MatToolbarModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

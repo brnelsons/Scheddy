@@ -1,11 +1,10 @@
 import {DayOfTheWeek} from './dayOfTheWeek';
-import {Employee} from './employeeService';
 import {IpcMainEvent} from 'electron';
 
 export interface Shift {
   dayOfTheWeek: DayOfTheWeek,
-  startMinuteOfDay: Number,
-  endMinuteOfDay: Number,
+  startMinuteOfDay: number,
+  endMinuteOfDay: number,
 }
 
 export class ShiftService {
@@ -14,12 +13,12 @@ export class ShiftService {
 
   constructor(ipcMain: Electron.IpcMain) {
     this.shifts = [];
-    ipcMain.on('get-shifts', (event: IpcMainEvent, args) => {
-      event.sender.send('get-shifts', this.getShifts());
+    ipcMain.handle('get-shifts', (event: IpcMainEvent, args) => {
+      return this.getShifts();
     });
-    ipcMain.on('add-shift', (event: IpcMainEvent, args) => {
+    ipcMain.handle('add-shift', (event: IpcMainEvent, args) => {
       this.addShift(args[0] as Shift);
-      event.sender.send('add-shift', 200);
+      return args[0];
     });
   }
 

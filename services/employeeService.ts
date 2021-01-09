@@ -24,7 +24,7 @@ export class EmployeeService {
         position: 'register dude'
       }
     ];
-    ipcMain.handle('get-employees', (event: IpcMainEvent, args) => {
+    ipcMain.handle('get-employees', () => {
       return this.getEmployees();
       // event.sender.send('get-employees', this.getEmployees());
     });
