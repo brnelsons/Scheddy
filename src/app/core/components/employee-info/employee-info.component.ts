@@ -1,10 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Employee} from '../../../../../services/employee';
 import {MatFormFieldAppearance} from '@angular/material/form-field';
-import {DayOfTheWeek} from '../../../../../services/dayOfTheWeek';
-import {Moment} from 'moment';
-import * as moment from 'moment';
-import {TimeRange} from '../minute-range-slider/minute-range-slider.component';
 
 @Component({
   selector: 'app-employee-info',
@@ -14,30 +10,21 @@ import {TimeRange} from '../minute-range-slider/minute-range-slider.component';
 export class EmployeeInfoComponent implements OnInit {
 
   @Input() employee: Employee;
+  @Input() hideLock: boolean = false;
+  @Input() lockFields: boolean = true;
+  @Output() employeeChange: EventEmitter<Employee> = new EventEmitter<Employee>();
   readonly fieldAppearance: MatFormFieldAppearance = 'standard';
-  lockFields: boolean = true;
-  defaultDateRange: TimeRange = {
-    startTime: '08:00',
-    endTime: '17:00',
-  }
-  readonly daysOfTheWeek: DayOfTheWeek[] = [
-    DayOfTheWeek.Sunday,
-    DayOfTheWeek.Monday,
-    DayOfTheWeek.Tuesday,
-    DayOfTheWeek.Wednesday,
-    DayOfTheWeek.Thursday,
-    DayOfTheWeek.Friday,
-    DayOfTheWeek.Saturday,
-  ]
 
   constructor() {
+
   }
 
   ngOnInit(): void {
+    console.log(this.employee)
   }
 
   public save(): void {
     this.lockFields = true;
-    //TODO save employee
+    this.employeeChange.emit(this.employee);
   }
 }

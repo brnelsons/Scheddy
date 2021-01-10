@@ -1,1 +1,3 @@
-<p>create-employee works!</p>
+<div style="padding: 20px;">
+  <app-employee-info [employee]="employee" (employeeChange)="save($event)" fxFlex="100" disabled="false" hideLock="true" lockFields="false"></app-employee-info>
+</div>

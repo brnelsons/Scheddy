@@ -1,10 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MinuteOfDayRange} from '../../../../../services/minuteOfDayRange';
+import {TimeRange} from '../../../../../services/TimeRange';
+import {MatFormFieldAppearance} from '@angular/material/form-field';
 
-export interface TimeRange {
-  startTime: string;
-  endTime: string;
-}
 
 @Component({
   selector: 'app-minute-range-slider',
@@ -12,8 +9,7 @@ export interface TimeRange {
   styleUrls: ['./minute-range-slider.component.scss']
 })
 export class MinuteRangeSliderComponent implements OnInit {
-  // slidersRefresh: EventEmitter<void> = new EventEmitter<void>();
-  range: MinuteOfDayRange = {start: 0, end: 1440};
+  readonly fieldAppearance: MatFormFieldAppearance = 'standard';
   @Input() disabled: boolean;
   @Input() dateRange: TimeRange;
   @Output() dateRangeChange: EventEmitter<TimeRange> = new EventEmitter<TimeRange>();

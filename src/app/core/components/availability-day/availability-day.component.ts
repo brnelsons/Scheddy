@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DayOfTheWeek} from '../../../../../services/dayOfTheWeek';
-import {Moment} from 'moment';
-import {TimeRange} from '../minute-range-slider/minute-range-slider.component';
+import {TimeRange} from '../../../../../services/TimeRange';
 
 @Component({
   selector: 'app-availability-day',
@@ -11,13 +10,21 @@ import {TimeRange} from '../minute-range-slider/minute-range-slider.component';
 export class AvailabilityDayComponent implements OnInit {
 
   @Input() day: DayOfTheWeek;
-  @Input() enabled: boolean = false;
-  @Input() dateRange: TimeRange;
-  @Output() dateRangeChange: EventEmitter<TimeRange> = new EventEmitter<TimeRange>();
+  @Input() disabled: boolean = false;
+  @Input() timeRange: TimeRange = {
+    enabled: false,
+    startTime: '08:00',
+    endTime: '17:00',
+  };
+  @Output() timeRangeChange: EventEmitter<TimeRange> = new EventEmitter<TimeRange>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  public dateRangeChanged(timeRange: TimeRange): void {
+    this.timeRangeChange.emit(timeRange);
+  }
 }

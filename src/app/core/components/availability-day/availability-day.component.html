@@ -1,4 +1,4 @@
 <div fxLayout="row" fxLayoutAlign="start center">
-  <mat-checkbox [(ngModel)]="enabled" style="width: 70px" color="primary">{{day}}</mat-checkbox>
-  <app-minute-range-slider [disabled]="!enabled" [(dateRange)]="dateRange" fxFlex></app-minute-range-slider>
+  <mat-checkbox [disabled]="disabled" [(ngModel)]="timeRange.enabled" style="width: 80px" color="primary">{{day}}</mat-checkbox>
+  <app-minute-range-slider [disabled]="!timeRange.enabled || disabled" [(dateRange)]="timeRange" fxFlex></app-minute-range-slider>
 </div>

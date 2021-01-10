@@ -10,6 +10,7 @@ import {FlexModule} from '@angular/flex-layout';
 import { MinuteRangeSliderComponent } from './components/minute-range-slider/minute-range-slider.component';
 import {Ng5SliderModule} from 'ng5-slider';
 import { AvailabilityDayComponent } from './components/availability-day/availability-day.component';
+import { AvailabilityWeekComponent } from './components/availability-week/availability-week.component';
 
 @NgModule({
   declarations: [
@@ -18,21 +19,20 @@ import { AvailabilityDayComponent } from './components/availability-day/availabi
     EmployeeCreateComponent,
     EmployeeInfoComponent,
     MinuteRangeSliderComponent,
-    AvailabilityDayComponent
+    AvailabilityDayComponent,
+    AvailabilityWeekComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     MaterialModule,
-    FlexModule,
-    Ng5SliderModule,
+    FlexModule
   ],
   exports: [
     ExceptionsComponent,
     EmployeeListComponent,
     EmployeeCreateComponent,
-    EmployeeInfoComponent,
-    Ng5SliderModule,
+    EmployeeInfoComponent
   ]
 })
 export class CoreModule {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {EmployeeService} from '../../services/employee/employee.service';
 import {Employee} from '../../../../../services/employee';
@@ -16,7 +16,12 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employees = this.employeeService.getEmployees();
+    this.employees = this.employeeService.employeesSubject;
+    this.employeeService.getEmployees();
+  }
+
+  save(employee: Employee): void {
+    this.employeeService.updateEmployee(employee);
   }
 
 }

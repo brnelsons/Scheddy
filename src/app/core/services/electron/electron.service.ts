@@ -50,7 +50,7 @@ export class ElectronService {
     this.ipcRenderer.send(channel, ...args);
   }
 
-  public invoke<T>(channel: string): Observable<T> {
-    return from(this.ipcRenderer.invoke(channel));
+  public invoke<T>(channel: string, ...args: any[]): Observable<T> {
+    return from(this.ipcRenderer.invoke(channel, args));
   }
 }

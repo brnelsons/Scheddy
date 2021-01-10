@@ -1,12 +1,12 @@
 <div fxLayout="column" fxFlex="100">
   <div fxFlexAlign="end">
-    <button *ngIf="lockFields"
+    <button *ngIf="lockFields && !hideLock"
             mat-icon-button color="primary"
             aria-label="Unlock to edit"
             (click)="lockFields = false">
       <mat-icon>lock</mat-icon>
     </button>
-    <button *ngIf="!lockFields"
+    <button *ngIf="!lockFields && !hideLock"
             mat-icon-button color="primary"
             aria-label="Unlock to edit"
             (click)="lockFields = true">
@@ -20,22 +20,46 @@
       save
     </button>
   </div>
-  <div fxLayout="row">
+  <div fxLayout="row" fxLayoutGap="20px">
+
     <div fxLayout="column" fxFlex="50">
       Info
-      <mat-form-field [appearance]="fieldAppearance">
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="First Name" [disabled]="lockFields" [value]="employee.firstName">
-      </mat-form-field>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field [appearance]="fieldAppearance">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="First Name" [disabled]="lockFields" [(ngModel)]="employee.firstName">
+        </mat-form-field>
 
-      <mat-form-field [appearance]="fieldAppearance">
-        <mat-label>Last Name</mat-label>
-        <input matInput placeholder="First Name" [disabled]="lockFields" [value]="employee.lastName">
-      </mat-form-field>
+        <mat-form-field [appearance]="fieldAppearance">
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" placeholder="First Name" [disabled]="lockFields" [(ngModel)]="employee.lastName">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field [appearance]="fieldAppearance">
+          <mat-label>Minimum Weekly Hours</mat-label>
+          <input matInput type="number" placeholder="32" [disabled]="lockFields"
+                 [(ngModel)]="employee.minHoursPerWeek">
+        </mat-form-field>
+
+        <mat-form-field [appearance]="fieldAppearance">
+          <mat-label>Maximum Weekly Hours</mat-label>
+          <input matInput type="number" placeholder="40" [disabled]="lockFields"
+                 [(ngModel)]="employee.maxHoursPerWeek">
+        </mat-form-field>
+      </div>
     </div>
+
     <div fxLayout="column" fxFlex="50">
       Availability
-      <app-availability-day *ngFor="let day of daysOfTheWeek" [day]="day" [(dateRange)]="defaultDateRange"></app-availability-day>
+      <app-availability-day day="Sunday" [(timeRange)]="employee.availability.Sunday" [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Monday" [(timeRange)]="employee.availability.Monday" [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Tuesday" [(timeRange)]="employee.availability.Tuesday" [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Wednesday" [(timeRange)]="employee.availability.Wednesday" [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Thursday" [(timeRange)]="employee.availability.Thursday" [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Friday" [(timeRange)]="employee.availability.Friday" [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Saturday" [(timeRange)]="employee.availability.Saturday" [disabled]="lockFields"></app-availability-day>
     </div>
   </div>
 </div>

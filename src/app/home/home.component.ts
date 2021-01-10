@@ -11,14 +11,11 @@ import {Employee} from '../../../services/employee';
 })
 export class HomeComponent implements OnInit {
 
-  employees: Observable<Employee[]>;
 
-  constructor(private router: Router,
-              private employeeService: EmployeeService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
-    this.employees = this.employeeService.getEmployees();
   }
 
 }
