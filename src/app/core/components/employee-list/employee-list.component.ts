@@ -24,4 +24,8 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.updateEmployee(employee);
   }
 
+  remove(employee: Employee): void {
+    this.employeeService.removeEmployee(employee);
+  }
+
 }

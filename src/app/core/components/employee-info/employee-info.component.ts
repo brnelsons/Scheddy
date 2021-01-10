@@ -11,8 +11,11 @@ export class EmployeeInfoComponent implements OnInit {
 
   @Input() employee: Employee;
   @Input() hideLock: boolean = false;
+  @Input() hideSave: boolean = false;
+  @Input() hideRemove: boolean = false;
   @Input() lockFields: boolean = true;
   @Output() employeeChange: EventEmitter<Employee> = new EventEmitter<Employee>();
+  @Output() employeeRemove: EventEmitter<Employee> = new EventEmitter<Employee>();
   readonly fieldAppearance: MatFormFieldAppearance = 'standard';
 
   constructor() {
@@ -26,5 +29,9 @@ export class EmployeeInfoComponent implements OnInit {
   public save(): void {
     this.lockFields = true;
     this.employeeChange.emit(this.employee);
+  }
+
+  public remove(): void {
+    this.employeeRemove.emit(this.employee);
   }
 }

@@ -1,5 +1,5 @@
 <div fxLayout="column" fxFlex="100">
-  <div fxFlexAlign="end">
+  <div fxFlexAlign="end" fxLayoutGap="10px">
     <button *ngIf="lockFields && !hideLock"
             mat-icon-button color="primary"
             aria-label="Unlock to edit"
@@ -12,12 +12,21 @@
             (click)="lockFields = true">
       <mat-icon>lock_open</mat-icon>
     </button>
-    <button [disabled]="lockFields"
+    <button *ngIf="!hideSave"
+            [disabled]="lockFields"
             fxFlexAlign="end"
             mat-flat-button color="primary"
             aria-label="Unlock to edit"
             (click)="save()">
       save
+    </button>
+    <button *ngIf="!hideRemove"
+            [disabled]="lockFields"
+            fxFlexAlign="end"
+            mat-flat-button color="warn"
+            aria-label="Remove employee"
+            (click)="remove()">
+      remove
     </button>
   </div>
   <div fxLayout="row" fxLayoutGap="20px">
@@ -53,13 +62,20 @@
 
     <div fxLayout="column" fxFlex="50">
       Availability
-      <app-availability-day day="Sunday" [(timeRange)]="employee.availability.Sunday" [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Monday" [(timeRange)]="employee.availability.Monday" [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Tuesday" [(timeRange)]="employee.availability.Tuesday" [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Wednesday" [(timeRange)]="employee.availability.Wednesday" [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Thursday" [(timeRange)]="employee.availability.Thursday" [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Friday" [(timeRange)]="employee.availability.Friday" [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Saturday" [(timeRange)]="employee.availability.Saturday" [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Sunday" [(timeRange)]="employee.availability.Sunday"
+                            [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Monday" [(timeRange)]="employee.availability.Monday"
+                            [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Tuesday" [(timeRange)]="employee.availability.Tuesday"
+                            [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Wednesday" [(timeRange)]="employee.availability.Wednesday"
+                            [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Thursday" [(timeRange)]="employee.availability.Thursday"
+                            [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Friday" [(timeRange)]="employee.availability.Friday"
+                            [disabled]="lockFields"></app-availability-day>
+      <app-availability-day day="Saturday" [(timeRange)]="employee.availability.Saturday"
+                            [disabled]="lockFields"></app-availability-day>
     </div>
   </div>
 </div>

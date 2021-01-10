@@ -28,4 +28,9 @@ export class EmployeeService {
     this.electronService.invoke('add-employee', employee)
       .subscribe(() => this.getEmployees());
   }
+
+  public removeEmployee(employee: Employee): void {
+    this.electronService.invoke('remove-employee', employee)
+      .subscribe(() => this.getEmployees());
+  }
 }
