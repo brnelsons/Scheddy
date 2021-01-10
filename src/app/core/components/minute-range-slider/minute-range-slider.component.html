@@ -1,0 +1,8 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" class="range-control range">
+  <mat-form-field>
+    <input matInput type="time" [(ngModel)]="dateRange.startTime" [disabled]="disabled">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="time" [(ngModel)]="dateRange.endTime" [disabled]="disabled">
+  </mat-form-field>
+</div>

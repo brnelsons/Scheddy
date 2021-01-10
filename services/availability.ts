@@ -1,5 +1,6 @@
 import {MinuteOfDayRange} from './minuteOfDayRange';
+import {DayOfTheWeek} from './dayOfTheWeek';
 
 export interface Availability {
-  availableRanges: MinuteOfDayRange[];
+  availableRanges: Map<DayOfTheWeek, MinuteOfDayRange[]>;
 }

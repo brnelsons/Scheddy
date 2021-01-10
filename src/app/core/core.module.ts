@@ -7,25 +7,32 @@ import {EmployeeInfoComponent} from './components/employee-info/employee-info.co
 import {SharedModule} from '../shared/shared.module';
 import {MaterialModule} from './material/material.module';
 import {FlexModule} from '@angular/flex-layout';
+import { MinuteRangeSliderComponent } from './components/minute-range-slider/minute-range-slider.component';
+import {Ng5SliderModule} from 'ng5-slider';
+import { AvailabilityDayComponent } from './components/availability-day/availability-day.component';
 
 @NgModule({
   declarations: [
     ExceptionsComponent,
     EmployeeListComponent,
     EmployeeCreateComponent,
-    EmployeeInfoComponent
+    EmployeeInfoComponent,
+    MinuteRangeSliderComponent,
+    AvailabilityDayComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     MaterialModule,
-    FlexModule
+    FlexModule,
+    Ng5SliderModule,
   ],
   exports: [
     ExceptionsComponent,
     EmployeeListComponent,
     EmployeeCreateComponent,
-    EmployeeInfoComponent
+    EmployeeInfoComponent,
+    Ng5SliderModule,
   ]
 })
 export class CoreModule {

@@ -12,6 +12,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
+import {NgxMatDatetimePickerModule, NgxMatTimepickerModule} from '@angular-material-components/datetime-picker';
+import {NgxMatMomentModule} from '@angular-material-components/moment-adapter';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -21,7 +25,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     CommonModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
     MatCommonModule,
+    MatCheckboxModule,
     MatInputModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
@@ -31,11 +37,16 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatListModule,
     MatTabsModule,
     MatExpansionModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatMomentModule,
   ],
   exports: [
     MatIconModule,
     MatButtonModule,
     MatCommonModule,
+    MatCardModule,
+    MatCheckboxModule,
     MatInputModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
@@ -45,6 +56,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatListModule,
     MatTabsModule,
     MatExpansionModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatMomentModule,
   ]
 })
 export class MaterialModule { }
