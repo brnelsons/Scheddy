@@ -1,0 +1,44 @@
+<div fxLayout="column" style="margin: 20px">
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-form-field fxFlex [appearance]="'standard'">
+      <mat-label>Template Name</mat-label>
+      <input matInput placeholder="Template Name" fxFlex>
+    </mat-form-field>
+
+    <mat-checkbox color="primary">Default</mat-checkbox>
+
+    <button fxFlexAlign="center"
+            mat-flat-button color="primary"
+            aria-label="Click to create schedule template">
+      create
+    </button>
+  </div>
+  <app-schedule-shift-template-manager day="Sunday"
+                                       [(shiftTemplates)]="SundayShiftTemplates">
+
+  </app-schedule-shift-template-manager>
+  <app-schedule-shift-template-manager day="Monday"
+                                       [(shiftTemplates)]="MondayShiftTemplates">
+
+  </app-schedule-shift-template-manager>
+  <app-schedule-shift-template-manager day="Tuesday"
+                                       [(shiftTemplates)]="TuesdayShiftTemplates">
+
+  </app-schedule-shift-template-manager>
+  <app-schedule-shift-template-manager day="Wednesday"
+                                       [(shiftTemplates)]="WednesdayShiftTemplates">
+
+  </app-schedule-shift-template-manager>
+  <app-schedule-shift-template-manager day="Thursday"
+                                       [(shiftTemplates)]="ThursdayShiftTemplates">
+
+  </app-schedule-shift-template-manager>
+  <app-schedule-shift-template-manager day="Friday"
+                                       [(shiftTemplates)]="FridayShiftTemplates">
+
+  </app-schedule-shift-template-manager>
+  <app-schedule-shift-template-manager day="Saturday"
+                                       [(shiftTemplates)]="SaturdayShiftTemplates">
+
+  </app-schedule-shift-template-manager>
+</div>

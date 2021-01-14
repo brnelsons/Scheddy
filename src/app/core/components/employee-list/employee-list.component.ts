@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {EmployeeService} from '../../services/employee/employee.service';
-import {Employee} from '../../../../../services/employee';
+import {Employee} from '../../../../../model/employee';
 
 @Component({
   selector: 'app-employee-list',

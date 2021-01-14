@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Availability} from '../../../../../services/availability';
+import {Availability} from '../../../../../model/availability';
 import {MatFormFieldAppearance} from '@angular/material/form-field';
 
 @Component({

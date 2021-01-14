@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Employee} from '../../../../../services/employee';
+import {Employee} from '../../../../../model/employee';
 import {MatFormFieldAppearance} from '@angular/material/form-field';
 
 @Component({

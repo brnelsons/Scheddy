@@ -1,4 +1,4 @@
-import {DayOfTheWeek} from './dayOfTheWeek';
+import {DayOfTheWeek} from '../model/dayOfTheWeek';
 import {IpcMainEvent} from 'electron';
 
 export interface Shift {
@@ -7,11 +7,12 @@ export interface Shift {
   endMinuteOfDay: number,
 }
 
-export class ShiftService {
+export class ShiftServlet {
 
   shifts: Shift[];
 
-  constructor(ipcMain: Electron.IpcMain) {
+  constructor(private ipcMain: Electron.IpcMain,
+              private userDataPath: string) {
     this.shifts = [];
     ipcMain.handle('get-shifts', (event: IpcMainEvent, args) => {
       return this.getShifts();

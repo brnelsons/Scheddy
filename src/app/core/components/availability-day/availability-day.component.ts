@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DayOfTheWeek} from '../../../../../services/dayOfTheWeek';
-import {TimeRange} from '../../../../../services/TimeRange';
+import {DayOfTheWeek} from '../../../../../model/dayOfTheWeek';
+import {TimeRange} from '../../../../../model/TimeRange';
 
 @Component({
   selector: 'app-availability-day',

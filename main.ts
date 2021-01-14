@@ -1,16 +1,16 @@
 import {app, BrowserWindow, ipcMain, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import {EmployeeService} from './services/employeeService';
-import {ShiftService} from './services/shiftService';
+import {EmployeeServlet} from './services/employeeServlet';
+import {ShiftServlet} from './services/shiftServlet';
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
-
-const employeeService = new EmployeeService(ipcMain);
-const shiftService = new ShiftService(ipcMain);
+const userDataPath = app.getPath('userData');
+const employeeService = new EmployeeServlet(ipcMain, userDataPath);
+const shiftService = new ShiftServlet(ipcMain, userDataPath);
 
 function createWindow(): BrowserWindow {
 
@@ -28,7 +28,7 @@ function createWindow(): BrowserWindow {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
       contextIsolation: false,  // false if you want to run 2e2 test with Spectron
-      enableRemoteModule : true // true if you want to run 2e2 test  with Spectron or use remote module in renderer context (ie. Angular)
+      enableRemoteModule: true // true if you want to run 2e2 test  with Spectron or use remote module in renderer context (ie. Angular)
     },
   });
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {EmployeeService} from '../core/services/employee/employee.service';
 import {Observable} from 'rxjs';
-import {Employee} from '../../../services/employee';
+import {Employee} from '../../../model/employee';
 
 @Component({
   selector: 'app-home',

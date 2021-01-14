@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TimeRange} from '../../../../../services/TimeRange';
+import {TimeRange} from '../../../../../model/TimeRange';
 import {MatFormFieldAppearance} from '@angular/material/form-field';
 
 

@@ -11,6 +11,8 @@ import { MinuteRangeSliderComponent } from './components/minute-range-slider/min
 import {Ng5SliderModule} from 'ng5-slider';
 import { AvailabilityDayComponent } from './components/availability-day/availability-day.component';
 import { AvailabilityWeekComponent } from './components/availability-week/availability-week.component';
+import { ScheduleTemplateCreateComponent } from './components/schedule-template-create/schedule-template-create.component';
+import { ScheduleShiftTemplateManagerComponent } from './components/schedule-shift-template-manager/schedule-shift-template-manager.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AvailabilityWeekComponent } from './components/availability-week/availa
     EmployeeInfoComponent,
     MinuteRangeSliderComponent,
     AvailabilityDayComponent,
-    AvailabilityWeekComponent
+    AvailabilityWeekComponent,
+    ScheduleTemplateCreateComponent,
+    ScheduleShiftTemplateManagerComponent
   ],
   imports: [
     CommonModule,
@@ -28,12 +32,13 @@ import { AvailabilityWeekComponent } from './components/availability-week/availa
     MaterialModule,
     FlexModule
   ],
-  exports: [
-    ExceptionsComponent,
-    EmployeeListComponent,
-    EmployeeCreateComponent,
-    EmployeeInfoComponent
-  ]
+    exports: [
+        ExceptionsComponent,
+        EmployeeListComponent,
+        EmployeeCreateComponent,
+        EmployeeInfoComponent,
+        ScheduleTemplateCreateComponent
+    ]
 })
 export class CoreModule {
 }

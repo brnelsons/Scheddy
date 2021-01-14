@@ -1,5 +1,5 @@
-import {Employee} from './employeeService';
-import {MinuteOfDayRange} from './minuteOfDayRange';
+import {MinuteOfDayRange} from '../model/minuteOfDayRange';
+import {Employee} from '../model/employee';
 
 export interface EmployeeException {
   id: number;
@@ -9,7 +9,7 @@ export interface EmployeeException {
   availableRanges: MinuteOfDayRange;
 }
 
-export class EmployeeExceptionService {
+export class EmployeeExceptionServlet {
 
   employeeExceptions: EmployeeException[];
 
