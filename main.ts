@@ -4,6 +4,7 @@ import * as url from 'url';
 import {EmployeeServlet} from './servlet/employeeServlet';
 import {ScheduleTemplateServlet} from "./servlet/scheduleTemplateServlet";
 import {EmployeeExceptionServlet} from "./servlet/employeeExceptionServlet";
+import {ScheduleServlet} from "./servlet/scheduleServlet";
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
@@ -16,6 +17,8 @@ const scheduleTemplateServlet = new ScheduleTemplateServlet(userDataPath);
 scheduleTemplateServlet.registerServlet(ipcMain);
 const employeeExceptionServlet = new EmployeeExceptionServlet(userDataPath);
 employeeExceptionServlet.registerServlet(ipcMain);
+const scheduleServlet = new ScheduleServlet(userDataPath);
+scheduleServlet.registerServlet(ipcMain);
 
 function createWindow(): BrowserWindow {
 

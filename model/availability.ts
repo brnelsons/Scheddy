@@ -1,22 +1,22 @@
-import {TimeRange} from './TimeRange';
+import {ContextualTimeRange} from './ContextualTimeRange';
 
 export class Availability {
-  Sunday: TimeRange;
-  Monday: TimeRange;
-  Tuesday: TimeRange;
-  Wednesday: TimeRange;
-  Thursday: TimeRange;
-  Friday: TimeRange;
-  Saturday: TimeRange;
+  Sunday: ContextualTimeRange;
+  Monday: ContextualTimeRange;
+  Tuesday: ContextualTimeRange;
+  Wednesday: ContextualTimeRange;
+  Thursday: ContextualTimeRange;
+  Friday: ContextualTimeRange;
+  Saturday: ContextualTimeRange;
 
 
-  constructor(Sunday: TimeRange,
-              Monday: TimeRange,
-              Tuesday: TimeRange,
-              Wednesday: TimeRange,
-              Thursday: TimeRange,
-              Friday: TimeRange,
-              Saturday: TimeRange) {
+  constructor(Sunday: ContextualTimeRange,
+              Monday: ContextualTimeRange,
+              Tuesday: ContextualTimeRange,
+              Wednesday: ContextualTimeRange,
+              Thursday: ContextualTimeRange,
+              Friday: ContextualTimeRange,
+              Saturday: ContextualTimeRange) {
     this.Sunday = Sunday;
     this.Monday = Monday;
     this.Tuesday = Tuesday;
@@ -28,13 +28,13 @@ export class Availability {
 
   public static defaultAvailability(): Availability {
     return new Availability(
-      TimeRange.defaultTimeRange(),
-      TimeRange.defaultTimeRange(),
-      TimeRange.defaultTimeRange(),
-      TimeRange.defaultTimeRange(),
-      TimeRange.defaultTimeRange(),
-      TimeRange.defaultTimeRange(),
-      TimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(),
     );
   }
 }

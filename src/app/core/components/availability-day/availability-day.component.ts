@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DayOfTheWeek} from '../../../../../model/dayOfTheWeek';
-import {TimeRange} from '../../../../../model/TimeRange';
+import {ContextualTimeRange} from '../../../../../model/ContextualTimeRange';
 
 @Component({
   selector: 'app-availability-day',
@@ -11,12 +11,12 @@ export class AvailabilityDayComponent implements OnInit {
 
   @Input() day: DayOfTheWeek;
   @Input() disabled: boolean = false;
-  @Input() timeRange: TimeRange = {
+  @Input() timeRange: ContextualTimeRange = {
     enabled: false,
     startTime: '08:00',
     endTime: '17:00',
   };
-  @Output() timeRangeChange: EventEmitter<TimeRange> = new EventEmitter<TimeRange>();
+  @Output() timeRangeChange: EventEmitter<ContextualTimeRange> = new EventEmitter<ContextualTimeRange>();
 
   constructor() {
   }
@@ -24,7 +24,7 @@ export class AvailabilityDayComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public dateRangeChanged(timeRange: TimeRange): void {
+  public dateRangeChanged(timeRange: ContextualTimeRange): void {
     this.timeRangeChange.emit(timeRange);
   }
 }

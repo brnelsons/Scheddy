@@ -1,5 +1,5 @@
 import {Availability} from './availability';
-import {TimeRange} from './TimeRange';
+import {ContextualTimeRange, TimeRange} from './ContextualTimeRange';
 import {v4 as uuidv4} from 'uuid';
 import {Role} from "./role";
 
@@ -7,8 +7,8 @@ export class ShiftTemplate extends TimeRange {
   id: string;
   requiredRole: Role;
 
-  constructor(enabled: boolean, startTime: string, endTime: string, requiredRole: "Supervisor" | "Employee" | "any") {
-    super(enabled, startTime, endTime);
+  constructor(startTime: string, endTime: string, requiredRole: "Supervisor" | "Employee" | "any") {
+    super(startTime, endTime);
     this.id = uuidv4();
     this.requiredRole = requiredRole;
   }
@@ -16,7 +16,6 @@ export class ShiftTemplate extends TimeRange {
   public static defaultShiftTemplate(): ShiftTemplate {
     const timeRange = TimeRange.defaultTimeRange();
     return new ShiftTemplate(
-      true,
       timeRange.startTime,
       timeRange.endTime,
       'any'

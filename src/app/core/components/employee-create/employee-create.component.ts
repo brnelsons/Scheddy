@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Employee} from '../../../../../model/employee';
 import {Availability} from '../../../../../model/availability';
 import {EmployeeService} from "../../services/employee.service";
-import {TimeRange} from "../../../../../model/TimeRange";
 
 @Component({
   selector: 'app-employee-create',
