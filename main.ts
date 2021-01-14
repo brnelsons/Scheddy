@@ -1,16 +1,21 @@
 import {app, BrowserWindow, ipcMain, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import {EmployeeServlet} from './services/employeeServlet';
-import {ShiftServlet} from './services/shiftServlet';
+import {EmployeeServlet} from './servlet/employeeServlet';
+import {ScheduleTemplateServlet} from "./servlet/scheduleTemplateServlet";
+import {EmployeeExceptionServlet} from "./servlet/employeeExceptionServlet";
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
 const userDataPath = app.getPath('userData');
-const employeeService = new EmployeeServlet(ipcMain, userDataPath);
-const shiftService = new ShiftServlet(ipcMain, userDataPath);
+const employeeServlet = new EmployeeServlet(userDataPath);
+employeeServlet.registerServlet(ipcMain);
+const scheduleTemplateServlet = new ScheduleTemplateServlet(userDataPath);
+scheduleTemplateServlet.registerServlet(ipcMain);
+const employeeExceptionServlet = new EmployeeExceptionServlet(userDataPath);
+employeeExceptionServlet.registerServlet(ipcMain);
 
 function createWindow(): BrowserWindow {
 

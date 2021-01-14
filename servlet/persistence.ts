@@ -2,48 +2,48 @@ import * as fs from 'fs';
 import * as path from 'path';
 import ErrnoException = NodeJS.ErrnoException;
 
-const ENCODING = 'UTF-8'
+const ENCODING = 'UTF-8';
 
 export class PersistenceService<T> {
-  constructor(private basePath: string,
-              private fileName: string) {
+  constructor(private storePath: string,
+              private storeName: string) {
   }
 
-  writeSync = (data: any): void => {
+  writeSync = (data: T): void => {
     fs.writeFileSync(
-      this.basePath + path.sep + this.fileName + ".json",
+      this.storePath + path.sep + this.storeName + ".json",
       JSON.stringify(data, null, 2));
-  }
+  };
 
-  write = (data: any): Promise<boolean> => {
+  write = (data: T): Promise<boolean> => {
     return new Promise<boolean>(((resolve, reject) => {
       fs.writeFile(
-        this.basePath + path.sep + this.fileName + ".json",
+        this.storePath + path.sep + this.storeName + ".json",
         JSON.stringify(data, null, 2),
         (err => {
           err ? reject(err) : resolve(true);
-        }))
-    }))
-  }
+        }));
+    }));
+  };
 
   read = (): Promise<T> => {
     return new Promise<T>(((resolve, reject) => {
       fs.readFile(
-        this.basePath + path.sep + this.fileName + ".json",
+        this.storePath + path.sep + this.storeName + ".json",
         {encoding: ENCODING},
         (err: ErrnoException | null, data: string) => {
           if (err) {
             reject(err);
             return;
           } else {
-            let object: T = JSON.parse(data) as T;
-            resolve(object)
+            const d: T = JSON.parse(data) as T;
+            resolve(d);
           }
-        })
+        });
     }));
-  }
+  };
 
-  exists = (fileName: string): boolean => {
-    return fs.existsSync(this.basePath + path.sep + fileName + '.json');
-  }
+  exists = (): boolean => {
+    return fs.existsSync(this.storePath + path.sep + this.storeName + '.json');
+  };
 }

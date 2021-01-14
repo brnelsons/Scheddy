@@ -2,43 +2,62 @@
   <div fxFlex="100" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
     <mat-form-field fxFlex [appearance]="'standard'">
       <mat-label>Template Name</mat-label>
-      <input matInput placeholder="Template Name" fxFlex>
+      <input matInput placeholder="Template Name" fxFlex [(ngModel)]="scheduleTemplate.name">
     </mat-form-field>
 
-    <mat-checkbox color="primary">Default</mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="scheduleTemplate.isDefault">Default</mat-checkbox>
 
     <button fxFlexAlign="center"
             mat-flat-button color="primary"
-            aria-label="Click to create schedule template">
+            aria-label="Click to create schedule template"
+            (click)="createScheduleTemplate()">
       create
     </button>
   </div>
-  <app-schedule-shift-template-manager day="Sunday"
-                                       [(shiftTemplates)]="SundayShiftTemplates">
-
-  </app-schedule-shift-template-manager>
-  <app-schedule-shift-template-manager day="Monday"
-                                       [(shiftTemplates)]="MondayShiftTemplates">
-
-  </app-schedule-shift-template-manager>
-  <app-schedule-shift-template-manager day="Tuesday"
-                                       [(shiftTemplates)]="TuesdayShiftTemplates">
-
-  </app-schedule-shift-template-manager>
-  <app-schedule-shift-template-manager day="Wednesday"
-                                       [(shiftTemplates)]="WednesdayShiftTemplates">
-
-  </app-schedule-shift-template-manager>
-  <app-schedule-shift-template-manager day="Thursday"
-                                       [(shiftTemplates)]="ThursdayShiftTemplates">
-
-  </app-schedule-shift-template-manager>
-  <app-schedule-shift-template-manager day="Friday"
-                                       [(shiftTemplates)]="FridayShiftTemplates">
-
-  </app-schedule-shift-template-manager>
-  <app-schedule-shift-template-manager day="Saturday"
-                                       [(shiftTemplates)]="SaturdayShiftTemplates">
-
-  </app-schedule-shift-template-manager>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-icon mat-list-icon color="primary">account_circle</mat-icon>
+        <div mat-line style="margin-left: 10px; margin-right: 10px">
+          Store Hours
+        </div>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <app-availability-week [(availability)]="scheduleTemplate.storeAvailability"></app-availability-week>
+      </mat-panel-description>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-icon mat-list-icon color="primary">account_circle</mat-icon>
+        <div mat-line style="margin-left: 10px; margin-right: 10px">
+          Shifts
+        </div>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <div fxLayout="column" fxFlex="100">
+          <app-schedule-shift-template-manager day="Sunday" fxFlex
+                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Sunday">
+          </app-schedule-shift-template-manager>
+          <app-schedule-shift-template-manager day="Monday" fxFlex
+                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Monday">
+          </app-schedule-shift-template-manager>
+          <app-schedule-shift-template-manager day="Tuesday" fxFlex
+                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Tuesday">
+          </app-schedule-shift-template-manager>
+          <app-schedule-shift-template-manager day="Wednesday" fxFlex
+                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Wednesday">
+          </app-schedule-shift-template-manager>
+          <app-schedule-shift-template-manager day="Thursday" fxFlex
+                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Thursday">
+          </app-schedule-shift-template-manager>
+          <app-schedule-shift-template-manager day="Friday" fxFlex
+                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Friday">
+          </app-schedule-shift-template-manager>
+          <app-schedule-shift-template-manager day="Saturday" fxFlex
+                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Saturday">
+          </app-schedule-shift-template-manager>
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

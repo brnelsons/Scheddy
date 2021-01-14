@@ -1,4 +1,4 @@
-<div fxLayout="row" style="min-height: 70px; border-bottom: 1px solid #E0E0E0" fxLayoutAlign="start center">
+<div fxLayout="column" fxLayout.gt-sm="row" style="min-height: 70px; border-bottom: 1px solid #E0E0E0" fxLayoutAlign="start center"  fxLayoutGap="20px">
   <div fxLayout="row" fxLayoutAlign="space-between center" style="width:140px;" fxFlexAlign="start">
     <div>{{day}}</div>
     <button mat-icon-button color="primary"
@@ -6,13 +6,19 @@
       <mat-icon>add_box</mat-icon>
     </button>
   </div>
-  <div fxLayout="column" fxLayoutAlign="center stretch" style="width: 100%">
-    <div *ngFor="let shiftTemplate of shiftTemplates" fxLayout="row" fxLayoutAlign="space-between center" >
+  <div fxLayout="column" fxLayoutAlign="start center">
+    <div *ngFor="let shiftTemplate of shiftTemplates" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+      <!--      TODO add change handler for shiftTemplate -->
+      <app-minute-range-slider [disabled]="false" [dateRange]="shiftTemplate" fxFlex></app-minute-range-slider>
+      <mat-form-field appearance="standard">
+        <mat-label>Role</mat-label>
+        <mat-select [(value)]="shiftTemplate.requiredRole" [disabled]="false">
+          <mat-option *ngFor="let role of availableRoles" [value]="role">{{role}}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <button mat-icon-button color="warn" (click)="removeShiftTemplate(shiftTemplate)">
         <mat-icon>remove_circle</mat-icon>
       </button>
-      <!--      TODO add change handler for shiftTemplate -->
-      <app-minute-range-slider [disabled]="false" [dateRange]="shiftTemplate" fxFlex></app-minute-range-slider>
     </div>
   </div>
 </div>

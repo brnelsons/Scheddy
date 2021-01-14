@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DayOfTheWeek} from '../../../../../model/dayOfTheWeek';
-import {ShiftTemplate} from '../../../../../services/scheduleTemplate';
+import {ShiftTemplate} from "../../../../../model/scheduleTemplate";
+import {Role} from "../../../../../model/role";
 
 @Component({
   selector: 'app-schedule-shift-template-manager',
@@ -12,6 +13,11 @@ export class ScheduleShiftTemplateManagerComponent implements OnInit {
   @Input() day: DayOfTheWeek;
   @Input() shiftTemplates: ShiftTemplate[];
   @Output() shiftTemplatesChange: EventEmitter<ShiftTemplate[]> = new EventEmitter<ShiftTemplate[]>();
+  readonly availableRoles: Role[] = [
+    'Supervisor',
+    'Employee',
+    'any'
+  ];
 
   constructor() {
   }
@@ -20,12 +26,12 @@ export class ScheduleShiftTemplateManagerComponent implements OnInit {
   }
 
   addShiftTemplate(): void {
-    this.shiftTemplates.push({enabled: true, startTime: '08:00', endTime: '17:00'});
+    this.shiftTemplates.push(new ShiftTemplate(true, '08:00', '20:00', 'any'));
     this.shiftTemplatesChange.emit(this.shiftTemplates);
   }
 
   removeShiftTemplate(shiftTemplate: ShiftTemplate): void {
-    this.shiftTemplates = this.shiftTemplates.filter(s => s === shiftTemplate);
+    this.shiftTemplates = this.shiftTemplates.filter(s => s !== shiftTemplate);
     this.shiftTemplatesChange.emit(this.shiftTemplates);
   }
 }

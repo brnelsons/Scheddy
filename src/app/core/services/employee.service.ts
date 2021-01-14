@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {ElectronService} from '../electron/electron.service';
-import {Employee} from '../../../../../model/employee';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Employee} from "../../../../model/employee";
+import {ElectronService} from "./electron.service";
+import {Servlets} from "../../../../servlet/servletConstants";
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +15,23 @@ export class EmployeeService {
   }
 
   public getEmployees(): Observable<Employee[]> {
-    this.electronService.invoke('get-employees')
+    this.electronService.invoke(Servlets.EMPLOYEE_GET_ALL)
       .subscribe((e: Employee[]) => this.employeesSubject.next(e));
     return this.employeesSubject;
   }
 
   public updateEmployee(employee: Employee): void {
-    this.electronService.invoke('update-employee', employee)
+    this.electronService.invoke(Servlets.EMPLOYEE_UPDATE, employee)
       .subscribe(() => this.getEmployees());
   }
 
   public addEmployee(employee: Employee): void {
-    this.electronService.invoke('add-employee', employee)
+    this.electronService.invoke(Servlets.EMPLOYEE_ADD, employee)
       .subscribe(() => this.getEmployees());
   }
 
   public removeEmployee(employee: Employee): void {
-    this.electronService.invoke('remove-employee', employee)
+    this.electronService.invoke(Servlets.EMPLOYEE_REMOVE, employee)
       .subscribe(() => this.getEmployees());
   }
 }

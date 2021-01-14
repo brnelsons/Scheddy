@@ -9,8 +9,8 @@ import {MatFormFieldAppearance} from '@angular/material/form-field';
 })
 export class AvailabilityWeekComponent implements OnInit {
 
-  @Input() disabled: boolean = false;
-  @Input() sundayEnabled: boolean = false;
+  @Input() lockFields = false;
+  @Input() sundayEnabled = false;
   @Input() availability: Availability;
   @Output() availabilityChange: EventEmitter<Availability> = new EventEmitter<Availability>();
 

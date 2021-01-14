@@ -58,24 +58,20 @@
                  [(ngModel)]="employee.maxHoursPerWeek">
         </mat-form-field>
       </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="standard">
+          <mat-label>Role</mat-label>
+          <mat-select [(value)]="employee.role" [disabled]="lockFields">
+            <mat-option *ngFor="let role of availableRoles" [value]="role">{{role}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
 
     <div fxLayout="column" fxFlex="50">
       Availability
-      <app-availability-day day="Sunday" [(timeRange)]="employee.availability.Sunday"
-                            [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Monday" [(timeRange)]="employee.availability.Monday"
-                            [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Tuesday" [(timeRange)]="employee.availability.Tuesday"
-                            [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Wednesday" [(timeRange)]="employee.availability.Wednesday"
-                            [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Thursday" [(timeRange)]="employee.availability.Thursday"
-                            [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Friday" [(timeRange)]="employee.availability.Friday"
-                            [disabled]="lockFields"></app-availability-day>
-      <app-availability-day day="Saturday" [(timeRange)]="employee.availability.Saturday"
-                            [disabled]="lockFields"></app-availability-day>
+      <app-availability-week [(availability)]="employee.availability" [lockFields]="lockFields"></app-availability-week>
     </div>
   </div>
 </div>

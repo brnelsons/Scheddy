@@ -13,6 +13,7 @@ import { AvailabilityDayComponent } from './components/availability-day/availabi
 import { AvailabilityWeekComponent } from './components/availability-week/availability-week.component';
 import { ScheduleTemplateCreateComponent } from './components/schedule-template-create/schedule-template-create.component';
 import { ScheduleShiftTemplateManagerComponent } from './components/schedule-shift-template-manager/schedule-shift-template-manager.component';
+import { ScheduleTemplateListComponent } from './components/schedule-template-list/schedule-template-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ScheduleShiftTemplateManagerComponent } from './components/schedule-shi
     AvailabilityDayComponent,
     AvailabilityWeekComponent,
     ScheduleTemplateCreateComponent,
-    ScheduleShiftTemplateManagerComponent
+    ScheduleShiftTemplateManagerComponent,
+    ScheduleTemplateListComponent
   ],
   imports: [
     CommonModule,
@@ -32,13 +34,14 @@ import { ScheduleShiftTemplateManagerComponent } from './components/schedule-shi
     MaterialModule,
     FlexModule
   ],
-    exports: [
-        ExceptionsComponent,
-        EmployeeListComponent,
-        EmployeeCreateComponent,
-        EmployeeInfoComponent,
-        ScheduleTemplateCreateComponent
-    ]
+  exports: [
+    ExceptionsComponent,
+    EmployeeListComponent,
+    EmployeeCreateComponent,
+    EmployeeInfoComponent,
+    ScheduleTemplateCreateComponent,
+    ScheduleTemplateListComponent
+  ]
 })
 export class CoreModule {
 }

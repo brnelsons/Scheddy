@@ -1,5 +1,19 @@
 export class TimeRange {
-  enabled: boolean = false;
-  startTime: string = '08:00';
-  endTime: string = '17:00';
+  enabled: boolean;
+  startTime: string;
+  endTime: string;
+
+  constructor(enabled: boolean, startTime: string, endTime: string) {
+    this.enabled = enabled;
+    this.startTime = startTime;
+    this.endTime = endTime;
+  }
+
+  public static defaultTimeRange(): TimeRange {
+    return new TimeRange(
+      false,
+      '08:00',
+      '20:00'
+    );
+  }
 }

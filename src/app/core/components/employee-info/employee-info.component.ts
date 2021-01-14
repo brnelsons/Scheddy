@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Employee} from '../../../../../model/employee';
 import {MatFormFieldAppearance} from '@angular/material/form-field';
+import {Role} from "../../../../../model/role";
 
 @Component({
   selector: 'app-employee-info',
@@ -10,13 +11,18 @@ import {MatFormFieldAppearance} from '@angular/material/form-field';
 export class EmployeeInfoComponent implements OnInit {
 
   @Input() employee: Employee;
-  @Input() hideLock: boolean = false;
-  @Input() hideSave: boolean = false;
-  @Input() hideRemove: boolean = false;
-  @Input() lockFields: boolean = true;
+  @Input() hideLock = false;
+  @Input() hideSave = false;
+  @Input() hideRemove = false;
+  @Input() lockFields = true;
   @Output() employeeChange: EventEmitter<Employee> = new EventEmitter<Employee>();
   @Output() employeeRemove: EventEmitter<Employee> = new EventEmitter<Employee>();
   readonly fieldAppearance: MatFormFieldAppearance = 'standard';
+  readonly availableRoles: Role[] = [
+    'Supervisor',
+    'Employee',
+    'any'
+  ];
 
   constructor() {
 

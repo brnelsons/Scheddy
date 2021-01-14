@@ -1,1 +1,14 @@
-<app-availability-day day="Sunday" [(timeRange)]="availability.Sunday" [disabled]="disabled"></app-availability-day>
+<app-availability-day day="Sunday" [(timeRange)]="availability.Sunday"
+                      [disabled]="lockFields"></app-availability-day>
+<app-availability-day day="Monday" [(timeRange)]="availability.Monday"
+                      [disabled]="lockFields"></app-availability-day>
+<app-availability-day day="Tuesday" [(timeRange)]="availability.Tuesday"
+                      [disabled]="lockFields"></app-availability-day>
+<app-availability-day day="Wednesday" [(timeRange)]="availability.Wednesday"
+                      [disabled]="lockFields"></app-availability-day>
+<app-availability-day day="Thursday" [(timeRange)]="availability.Thursday"
+                      [disabled]="lockFields"></app-availability-day>
+<app-availability-day day="Friday" [(timeRange)]="availability.Friday"
+                      [disabled]="lockFields"></app-availability-day>
+<app-availability-day day="Saturday" [(timeRange)]="availability.Saturday"
+                      [disabled]="lockFields"></app-availability-day>

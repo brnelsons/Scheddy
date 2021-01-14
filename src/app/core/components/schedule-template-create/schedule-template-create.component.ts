@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ShiftTemplate} from '../../../../../services/scheduleTemplate';
+import {AvailableShiftTemplates, ScheduleTemplate, ShiftTemplate} from "../../../../../model/scheduleTemplate";
+import {ScheduleTemplateService} from "../../services/schedule-template.service";
 
 @Component({
   selector: 'app-schedule-template-create',
@@ -8,18 +9,17 @@ import {ShiftTemplate} from '../../../../../services/scheduleTemplate';
 })
 export class ScheduleTemplateCreateComponent implements OnInit {
 
-  SundayShiftTemplates: ShiftTemplate[] = [];
-  MondayShiftTemplates: ShiftTemplate[] = [];
-  TuesdayShiftTemplates: ShiftTemplate[] = [];
-  WednesdayShiftTemplates: ShiftTemplate[] = [];
-  ThursdayShiftTemplates: ShiftTemplate[] = [];
-  FridayShiftTemplates: ShiftTemplate[] = [];
-  SaturdayShiftTemplates: ShiftTemplate[] = [];
+  scheduleTemplate: ScheduleTemplate = ScheduleTemplate.defaultScheduleTemplate();
 
-  constructor() { }
+  constructor(private scheduleTemplateService: ScheduleTemplateService) { }
 
   ngOnInit(): void {
 
+  }
+
+  createScheduleTemplate(): void {
+    this.scheduleTemplateService.add(this.scheduleTemplate);
+    this.scheduleTemplate = ScheduleTemplate.defaultScheduleTemplate();
   }
 
 }

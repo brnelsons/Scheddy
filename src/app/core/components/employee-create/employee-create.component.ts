@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Employee} from '../../../../../model/employee';
 import {Availability} from '../../../../../model/availability';
-import {EmployeeService} from '../../services/employee/employee.service';
+import {EmployeeService} from "../../services/employee.service";
+import {TimeRange} from "../../../../../model/TimeRange";
 
 @Component({
   selector: 'app-employee-create',
@@ -16,9 +17,9 @@ export class EmployeeCreateComponent implements OnInit {
     lastName: "",
     maxHoursPerWeek: 32,
     minHoursPerWeek: 32,
-    position: "",
-    availability: new Availability()
-  }
+    role: 'any',
+    availability: Availability.defaultAvailability()
+  };
 
   constructor(private employeeService: EmployeeService) {
   }
@@ -34,8 +35,8 @@ export class EmployeeCreateComponent implements OnInit {
       lastName: "",
       maxHoursPerWeek: 32,
       minHoursPerWeek: 32,
-      position: "",
-      availability: new Availability()
-    }
+      role: 'any',
+      availability: Availability.defaultAvailability()
+    };
   }
 }

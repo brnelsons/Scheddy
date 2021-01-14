@@ -49,7 +49,8 @@
     "@angular-material-components/moment-adapter": "~5.0.0",
     "moment": "~2.29.1",
     "ng5-slider": "~1.2.6",
-    "@angular/flex-layout": "~11.0.0-beta.33"
+    "@angular/flex-layout": "~11.0.0-beta.33",
+    "uuid": "~8.3.2"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "10.0.1",
