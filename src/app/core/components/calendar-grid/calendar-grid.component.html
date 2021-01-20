@@ -1,13 +1,3 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <button mat-icon-button>
-    <mat-icon>navigate_before</mat-icon>
-  </button>
-  <div>{{datetime.format('MMMM')}}</div>
-  <button mat-icon-button>
-    <mat-icon>navigate_next</mat-icon>
-  </button>
-</div>
-
 <div class="day-of-week">
   <div>Sunday</div>
   <div>Monday</div>
@@ -20,7 +10,18 @@
 
 <div class="calendar-grid" [ngClass]="startingDay">
   <div class="calendar-day" *ngFor="let date of calendarDates | async">
-    <time [dateTime]="date.date" [ngClass]="datetime.month() === newMoment(date.date).month() ? 'day' : 'faded-day'">{{date.display}}</time>
-    <app-minute-range-slider *ngFor="let shift of date.shifts" [dateRange]="shift" disabled="true"></app-minute-range-slider>
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: -25px;">
+      <time [dateTime]="date.date"
+            [ngClass]="config.datetime.month() === newMoment(date.date).month() ? 'day' : 'faded-day'" fxFlex>{{date.display}}</time>
+      <mat-form-field appearance="standard" fxFlex="100px">
+        <mat-label>Template</mat-label>
+        <mat-select fxFlex [value]="selectedTemplate" (valueChange)="changeTemplate($event)">
+          <mat-option *ngFor="let template of scheduleTemplates | async"
+                      [value]="template">{{template.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <app-minute-range-slider *ngFor="let shift of date.shifts" [dateRange]="shift"
+                             disabled="true"></app-minute-range-slider>
   </div>
 </div>

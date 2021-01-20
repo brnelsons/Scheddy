@@ -1,26 +1,27 @@
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let template of templates | async">
-    <mat-expansion-panel-header>
-      <mat-icon mat-list-icon color="primary">account_circle</mat-icon>
-      <div mat-line style="margin-left: 10px; margin-right: 10px">
-        {{template.name}}
+<div class="card-grid">
+  <mat-card *ngFor="let template of templates | async">
+    <mat-card-header>
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex>
+        <mat-icon mat-list-icon color="primary">account_circle</mat-icon>
+        <div mat-line style="margin-left: 10px; margin-right: 10px">
+          {{template.name}}
+        </div>
+        <div *ngIf="template.isDefault">(default)</div>
+        <div fxFlex></div>
+        <button mat-icon-button color="accent">
+          <mat-icon>lock</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+          <mat-icon>remove</mat-icon>
+        </button>
       </div>
-      <div *ngIf="template.isDefault">(default)</div>
-    </mat-expansion-panel-header>
-    <mat-panel-description>
-      <div class="day-of-week">
-        <div>Su</div>
-        <div>Mo</div>
-        <div>Tu</div>
-        <div>We</div>
-        <div>Th</div>
-        <div>Fr</div>
-        <div>Sa</div>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="column">
+        <div *ngFor="let shift of template.shifts">
+          <app-minute-range-slider [dateRange]="shift" [disabled]="true"></app-minute-range-slider>
+        </div>
       </div>
-
-      <div class="date-grid">
-        <button><time *ngFor="let date of dates" datetime="date.time">1</time></button>
-      </div>
-    </mat-panel-description>
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-card-content>
+  </mat-card>
+</div>

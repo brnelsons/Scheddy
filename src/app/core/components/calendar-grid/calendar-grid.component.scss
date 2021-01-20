@@ -8,8 +8,10 @@
 }
 
 .calendar-day {
-  min-height: 100px;
+  min-height: 200px;
   padding: 10px;
+  border: #dddddd solid 1px;
+  background-color: #ffffff;
 }
 
 .sunday .calendar-day:first-child {

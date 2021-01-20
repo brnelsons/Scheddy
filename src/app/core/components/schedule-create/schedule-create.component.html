@@ -1,10 +1,11 @@
-<div fxLayout="row" fxLayoutGap="20px">
-  <mat-form-field appearance="standard">
-    <mat-label>Role</mat-label>
-    <mat-select [(value)]="activeTemplate">
-      <mat-option *ngFor="let template of scheduleTemplates | async" [value]="template">{{template.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+    <button mat-icon-button>
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <div>{{datetime.format('MMMM')}}</div>
+    <button mat-icon-button>
+      <mat-icon>navigate_next</mat-icon>
+    </button>
 </div>
 
-<app-calendar-grid [template]="activeTemplate"></app-calendar-grid>
+<app-calendar-grid [scheduleTemplates]="scheduleTemplates" [datetime]="datetime" [selectedTemplate]="defaultTemplate"></app-calendar-grid>

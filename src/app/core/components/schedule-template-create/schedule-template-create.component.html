@@ -35,27 +35,7 @@
       </mat-expansion-panel-header>
       <mat-panel-description>
         <div fxLayout="column" fxFlex="100">
-          <app-schedule-shift-template-manager day="Sunday" fxFlex
-                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Sunday">
-          </app-schedule-shift-template-manager>
-          <app-schedule-shift-template-manager day="Monday" fxFlex
-                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Monday">
-          </app-schedule-shift-template-manager>
-          <app-schedule-shift-template-manager day="Tuesday" fxFlex
-                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Tuesday">
-          </app-schedule-shift-template-manager>
-          <app-schedule-shift-template-manager day="Wednesday" fxFlex
-                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Wednesday">
-          </app-schedule-shift-template-manager>
-          <app-schedule-shift-template-manager day="Thursday" fxFlex
-                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Thursday">
-          </app-schedule-shift-template-manager>
-          <app-schedule-shift-template-manager day="Friday" fxFlex
-                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Friday">
-          </app-schedule-shift-template-manager>
-          <app-schedule-shift-template-manager day="Saturday" fxFlex
-                                               [(shiftTemplates)]="scheduleTemplate.shiftAvailability.Saturday">
-          </app-schedule-shift-template-manager>
+          <app-schedule-shift-template-manager fxFlex [(shiftTemplates)]="scheduleTemplate.shifts"></app-schedule-shift-template-manager>
         </div>
       </mat-panel-description>
     </mat-expansion-panel>

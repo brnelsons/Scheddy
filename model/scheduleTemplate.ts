@@ -49,18 +49,6 @@ export class AvailableShiftTemplates {
     this.Friday = Friday;
     this.Saturday = Saturday;
   }
-
-  public static defaultAvailableShiftTemplates(): AvailableShiftTemplates {
-    return new AvailableShiftTemplates(
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-    );
-  }
 }
 
 export class ScheduleTemplate {
@@ -68,22 +56,22 @@ export class ScheduleTemplate {
   name: string;
   isDefault: boolean;
   storeAvailability: Availability;
-  shiftAvailability: AvailableShiftTemplates;
+  shifts: ShiftTemplate[];
 
 
-  constructor(name: string, isDefault: boolean, storeAvailability: Availability, shiftAvailability: AvailableShiftTemplates) {
+  constructor(name: string, isDefault: boolean, storeAvailability: Availability, shifts: ShiftTemplate[]) {
     this.name = name;
     this.isDefault = isDefault;
     this.storeAvailability = storeAvailability;
-    this.shiftAvailability = shiftAvailability;
+    this.shifts = shifts;
   }
 
   public static defaultScheduleTemplate(timeRangeEnabled = false): ScheduleTemplate {
     return new ScheduleTemplate(
-      "Schedule Template Name",
+      "Template",
       false,
       Availability.defaultAvailability(timeRangeEnabled),
-      AvailableShiftTemplates.defaultAvailableShiftTemplates(),
+      [],
     );
   }
 }

@@ -1,10 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {CalendarDate} from "../../../../../model/calendar-date";
 import * as moment from "moment";
 import {Moment} from "moment";
 import {ScheduleTemplate, ShiftTemplate} from "../../../../../model/scheduleTemplate";
 import {AssignedShift} from "../../../../../model/assignedShifts";
+
+export class CalendarGridConfig {
+  template: ScheduleTemplate;
+  datetime: Moment;
+}
 
 @Component({
   selector: 'app-calendar-grid',
@@ -13,8 +18,11 @@ import {AssignedShift} from "../../../../../model/assignedShifts";
 })
 export class CalendarGridComponent implements OnInit {
 
-  @Input() template: ScheduleTemplate = ScheduleTemplate.defaultScheduleTemplate(false);
-  @Input() datetime: Moment = moment().add(1, 'month');
+  @Input() datetime: Moment;
+  @Input() scheduleTemplates: Observable<ScheduleTemplate[]>;
+  @Input() selectedTemplate: ScheduleTemplate;
+  date: Moment;
+  config: CalendarGridConfig;
   calendarDates: BehaviorSubject<CalendarDate[]> = new BehaviorSubject<CalendarDate[]>([]);
   startingDay = 'sunday';
 
@@ -22,10 +30,16 @@ export class CalendarGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.calendarDates.next(this.getDaysInMonth(this.datetime));
+    if (!this.selectedTemplate || !this.date) return;
+    this.calendarDates.next(this.getDaysInMonth(this.selectedTemplate, this.date));
   }
 
-  getDaysInMonth(moment: Moment): CalendarDate[] {
+  changeTemplate(template: ScheduleTemplate): void {
+    this.selectedTemplate = template;
+    this.calendarDates.next(this.getDaysInMonth(template, this.date));
+  }
+
+  getDaysInMonth(template: ScheduleTemplate, moment: Moment): CalendarDate[] {
     const startingSunday = moment.clone().startOf('month').startOf('week');
     const endingSaturday = moment.clone().endOf('month').endOf('week');
     const result: CalendarDate[] = [];
@@ -34,7 +48,7 @@ export class CalendarGridComponent implements OnInit {
       const calendarDate: CalendarDate = {
         date: `${i.format('YYYY-MM-DD')}`,
         display: `${i.format('D')}`,
-        shifts: CalendarGridComponent.createShifts(this.template.shiftAvailability[i.format('dddd')])
+        shifts: CalendarGridComponent.createShifts(template.shifts)
       };
       result.push(calendarDate);
       i = i.add(1, 'days');

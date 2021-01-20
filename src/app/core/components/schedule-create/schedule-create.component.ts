@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ScheduleTemplateService} from "../../services/schedule-template.service";
 import {Observable} from "rxjs";
 import {ScheduleTemplate} from "../../../../../model/scheduleTemplate";
+import * as moment from "moment";
+import {Moment} from "moment";
 
 @Component({
   selector: 'app-schedule-create',
@@ -11,7 +13,8 @@ import {ScheduleTemplate} from "../../../../../model/scheduleTemplate";
 export class ScheduleCreateComponent implements OnInit {
 
   scheduleTemplates: Observable<ScheduleTemplate[]>;
-  activeTemplate: ScheduleTemplate;
+  defaultTemplate: ScheduleTemplate;
+  datetime: Moment = moment().add(1, 'month');
 
   constructor(private templateService: ScheduleTemplateService) {
   }
@@ -20,12 +23,13 @@ export class ScheduleCreateComponent implements OnInit {
     this.scheduleTemplates = this.templateService.getScheduleTemplates();
     this.scheduleTemplates.subscribe(templates => {
       if (templates.length > 0) {
-        this.activeTemplate = templates[0];
+        let activeTemplate = templates[0];
         for (const template of templates) {
           if (template.isDefault) {
-            this.activeTemplate = template;
+            activeTemplate = template;
           }
         }
+        this.defaultTemplate = activeTemplate;
       }
     });
   }
