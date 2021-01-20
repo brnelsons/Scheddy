@@ -1,7 +1,8 @@
 import {Availability} from './availability';
-import {ContextualTimeRange, TimeRange} from './ContextualTimeRange';
+import {ContextualTimeRange} from './contextualTimeRange';
 import {v4 as uuidv4} from 'uuid';
 import {Role} from "./role";
+import {TimeRange} from "./timeRange";
 
 export class ShiftTemplate extends TimeRange {
   id: string;
@@ -77,11 +78,11 @@ export class ScheduleTemplate {
     this.shiftAvailability = shiftAvailability;
   }
 
-  public static defaultScheduleTemplate(): ScheduleTemplate {
+  public static defaultScheduleTemplate(timeRangeEnabled = false): ScheduleTemplate {
     return new ScheduleTemplate(
       "Schedule Template Name",
       false,
-      Availability.defaultAvailability(),
+      Availability.defaultAvailability(timeRangeEnabled),
       AvailableShiftTemplates.defaultAvailableShiftTemplates(),
     );
   }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {AvailableShiftTemplates, ScheduleTemplate, ShiftTemplate} from "../../../../../model/scheduleTemplate";
+import {Component, OnInit} from '@angular/core';
+import {ScheduleTemplate} from "../../../../../model/scheduleTemplate";
 import {ScheduleTemplateService} from "../../services/schedule-template.service";
 
 @Component({
@@ -9,9 +9,10 @@ import {ScheduleTemplateService} from "../../services/schedule-template.service"
 })
 export class ScheduleTemplateCreateComponent implements OnInit {
 
-  scheduleTemplate: ScheduleTemplate = ScheduleTemplate.defaultScheduleTemplate();
+  scheduleTemplate: ScheduleTemplate = ScheduleTemplate.defaultScheduleTemplate(true);
 
-  constructor(private scheduleTemplateService: ScheduleTemplateService) { }
+  constructor(private scheduleTemplateService: ScheduleTemplateService) {
+  }
 
   ngOnInit(): void {
 

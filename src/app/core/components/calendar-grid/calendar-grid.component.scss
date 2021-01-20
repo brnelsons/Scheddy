@@ -1,0 +1,51 @@
+.day-of-week, .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day-of-week {
+  border-bottom: 1px #a7a7a7 solid;
+}
+
+.calendar-day {
+  min-height: 100px;
+  padding: 10px;
+}
+
+.sunday .calendar-day:first-child {
+  grid-column: 1;
+}
+
+.monday .calendar-day:first-child {
+  grid-column: 2;
+}
+
+.tuesday .calendar-day:first-child {
+  grid-column: 3;
+}
+
+.wednesday .calendar-day:first-child {
+  grid-column: 4;
+}
+
+.thursday .calendar-day:first-child {
+  grid-column: 5;
+}
+
+.friday .calendar-day:first-child {
+  grid-column: 6;
+}
+
+.saturday .calendar-day:first-child {
+  grid-column: 7;
+}
+
+.day {
+  color: #555555;
+  font-weight: lighter;
+}
+
+.faded-day {
+  color: #999999;
+  font-weight: lighter;
+}

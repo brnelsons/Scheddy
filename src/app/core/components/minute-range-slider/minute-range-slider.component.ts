@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ContextualTimeRange} from '../../../../../model/ContextualTimeRange';
+import {ContextualTimeRange} from '../../../../../model/contextualTimeRange';
 import {MatFormFieldAppearance} from '@angular/material/form-field';
+import {TimeRange} from "../../../../../model/timeRange";
 
 
 @Component({
@@ -11,8 +12,8 @@ import {MatFormFieldAppearance} from '@angular/material/form-field';
 export class MinuteRangeSliderComponent implements OnInit {
   readonly fieldAppearance: MatFormFieldAppearance = 'standard';
   @Input() disabled: boolean;
-  @Input() dateRange: ContextualTimeRange;
-  @Output() dateRangeChange: EventEmitter<ContextualTimeRange> = new EventEmitter<ContextualTimeRange>();
+  @Input() dateRange: TimeRange;
+  @Output() dateRangeChange: EventEmitter<TimeRange> = new EventEmitter<TimeRange>();
 
   constructor() {
   }

@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <button mat-icon-button>
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <div>{{datetime.format('MMMM')}}</div>
+  <button mat-icon-button>
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+</div>
+
+<div class="day-of-week">
+  <div>Sunday</div>
+  <div>Monday</div>
+  <div>Tuesday</div>
+  <div>Wednesday</div>
+  <div>Thursday</div>
+  <div>Friday</div>
+  <div>Saturday</div>
+</div>
+
+<div class="calendar-grid" [ngClass]="startingDay">
+  <div class="calendar-day" *ngFor="let date of calendarDates | async">
+    <time [dateTime]="date.date" [ngClass]="datetime.month() === newMoment(date.date).month() ? 'day' : 'faded-day'">{{date.display}}</time>
+    <app-minute-range-slider *ngFor="let shift of date.shifts" [dateRange]="shift" disabled="true"></app-minute-range-slider>
+  </div>
+</div>

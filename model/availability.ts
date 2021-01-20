@@ -1,4 +1,4 @@
-import {ContextualTimeRange} from './ContextualTimeRange';
+import {ContextualTimeRange} from './contextualTimeRange';
 
 export class Availability {
   Sunday: ContextualTimeRange;
@@ -26,15 +26,15 @@ export class Availability {
     this.Saturday = Saturday;
   }
 
-  public static defaultAvailability(): Availability {
+  public static defaultAvailability(timeRangeEnabled = false): Availability {
     return new Availability(
-      ContextualTimeRange.defaultTimeRange(),
-      ContextualTimeRange.defaultTimeRange(),
-      ContextualTimeRange.defaultTimeRange(),
-      ContextualTimeRange.defaultTimeRange(),
-      ContextualTimeRange.defaultTimeRange(),
-      ContextualTimeRange.defaultTimeRange(),
-      ContextualTimeRange.defaultTimeRange(),
+      ContextualTimeRange.defaultTimeRange(timeRangeEnabled),
+      ContextualTimeRange.defaultTimeRange(timeRangeEnabled),
+      ContextualTimeRange.defaultTimeRange(timeRangeEnabled),
+      ContextualTimeRange.defaultTimeRange(timeRangeEnabled),
+      ContextualTimeRange.defaultTimeRange(timeRangeEnabled),
+      ContextualTimeRange.defaultTimeRange(timeRangeEnabled),
+      ContextualTimeRange.defaultTimeRange(timeRangeEnabled),
     );
   }
 }

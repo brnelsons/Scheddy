@@ -8,8 +8,19 @@
       <div *ngIf="template.isDefault">(default)</div>
     </mat-expansion-panel-header>
     <mat-panel-description>
-      <div *ngFor="let a of template.shiftAvailability"></div>
-<!--      <app-employee-info [employee]="employee" (employeeChange)="save(employee)" (employeeRemove)="remove(employee)" fxFlex="100"></app-employee-info>-->
+      <div class="day-of-week">
+        <div>Su</div>
+        <div>Mo</div>
+        <div>Tu</div>
+        <div>We</div>
+        <div>Th</div>
+        <div>Fr</div>
+        <div>Sa</div>
+      </div>
+
+      <div class="date-grid">
+        <button><time *ngFor="let date of dates" datetime="date.time">1</time></button>
+      </div>
     </mat-panel-description>
   </mat-expansion-panel>
 </mat-accordion>

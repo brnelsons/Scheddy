@@ -26,7 +26,7 @@ export class ScheduleShiftTemplateManagerComponent implements OnInit {
   }
 
   addShiftTemplate(): void {
-    this.shiftTemplates.push(new ShiftTemplate(true, '08:00', '20:00', 'any'));
+    this.shiftTemplates.push(new ShiftTemplate('08:00', '20:00', 'any'));
     this.shiftTemplatesChange.emit(this.shiftTemplates);
   }
 

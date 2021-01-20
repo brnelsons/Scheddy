@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutGap="20px">
+  <mat-form-field appearance="standard">
+    <mat-label>Role</mat-label>
+    <mat-select [(value)]="activeTemplate">
+      <mat-option *ngFor="let template of scheduleTemplates | async" [value]="template">{{template.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<app-calendar-grid [template]="activeTemplate"></app-calendar-grid>

@@ -1,11 +1,10 @@
-import {TimeRange} from "./ContextualTimeRange";
 import {Role} from "./role";
+import {TimeRange} from "./timeRange";
 
 export class AssignedShift extends TimeRange {
   id: string;
   requiredRole: Role;
   employeeId: string;
-
 
   constructor(startTime: string, endTime: string, id: string, requiredRole: "Supervisor" | "Employee" | "any" | string, employeeId: string) {
     super(startTime, endTime);
