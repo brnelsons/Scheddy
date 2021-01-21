@@ -18,6 +18,7 @@ import { CalendarGridComponent } from './components/calendar-grid/calendar-grid.
 import { ScheduleCreateComponent } from './components/schedule-create/schedule-create.component';
 import { CalendarWeekGridComponent } from './components/calendar-week-grid/calendar-week-grid.component';
 import { CalendarShiftPanelComponent } from './components/calendar-shift-panel/calendar-shift-panel.component';
+import { CalendarGridDayComponent } from './components/calendar-grid-day/calendar-grid-day.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CalendarShiftPanelComponent } from './components/calendar-shift-panel/c
     CalendarGridComponent,
     ScheduleCreateComponent,
     CalendarWeekGridComponent,
-    CalendarShiftPanelComponent
+    CalendarShiftPanelComponent,
+    CalendarGridDayComponent
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {ScheduleTemplate} from "../../../../model/scheduleTemplate";
 import {Employee} from "../../../../model/employee";
 import {Servlets} from "../../../../servlet/servletConstants";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,14 @@ export class ScheduleTemplateService implements OnInit {
   public remove(scheduleTemplate: Employee): void {
     this.electronService.invoke(Servlets.SCHEDULE_TEMPLATE_REMOVE, scheduleTemplate)
       .subscribe(() => this.getScheduleTemplates());
+  }
+
+  getDefaultTemplate(templates: ScheduleTemplate[]): ScheduleTemplate {
+    for (const template of templates) {
+      if (template.isDefault) {
+        return template;
+      }
+    }
+    return templates[0];
   }
 }

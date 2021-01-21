@@ -1,0 +1,19 @@
+<div fxLayout="column" fxLayoutAlign="start stretch">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <div>{{calendarDate.display}}</div>
+    <select fxFlex="auto auto 100px" [ngModel]="selectedTemplate" (ngModelChange)="setTemplate($event)">
+      <option *ngFor="let template of availableTemplates" [ngValue]="template">{{template.name}}</option>
+    </select>
+  </div>
+  <mat-form-field appearance="standard"
+                  *ngFor="let shift of calendarDate.shifts"
+                  fxFlex
+                  style="margin-top: -8px;margin-bottom: -8px; font-size:14px;">
+    <mat-label>{{shift.startTime}}-{{shift.endTime}}</mat-label>
+    <mat-select fxFlex
+                [value]="shift"
+                (valueChange)="updateShift(shift, $event)">
+      <mat-option *ngFor="let employee of employees" [value]="employee">{{employee.lastName}}, {{employee.firstName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

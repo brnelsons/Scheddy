@@ -23,14 +23,14 @@ scheduleServlet.registerServlet(ipcMain);
 function createWindow(): BrowserWindow {
 
   const electronScreen = screen;
+  // TODO save previous window size and reapply on open
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width,
-    height: size.height,
+    center: true,
+    width: size.width / 2,
+    height: size.height / 2,
     // simpleFullscreen: true,
     webPreferences: {
       nodeIntegration: true,

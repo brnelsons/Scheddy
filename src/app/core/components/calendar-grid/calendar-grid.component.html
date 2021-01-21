@@ -1,4 +1,4 @@
-<div class="day-of-week">
+<div class="day-of-week sticky" fxLayout="row" fxLayoutAlign="space-around center">
   <div>Sunday</div>
   <div>Monday</div>
   <div>Tuesday</div>
@@ -8,20 +8,8 @@
   <div>Saturday</div>
 </div>
 
-<div class="calendar-grid" [ngClass]="startingDay">
-  <div class="calendar-day" *ngFor="let date of calendarDates | async">
-    <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: -25px;">
-      <time [dateTime]="date.date"
-            [ngClass]="config.datetime.month() === newMoment(date.date).month() ? 'day' : 'faded-day'" fxFlex>{{date.display}}</time>
-      <mat-form-field appearance="standard" fxFlex="100px">
-        <mat-label>Template</mat-label>
-        <mat-select fxFlex [value]="selectedTemplate" (valueChange)="changeTemplate($event)">
-          <mat-option *ngFor="let template of scheduleTemplates | async"
-                      [value]="template">{{template.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <app-minute-range-slider *ngFor="let shift of date.shifts" [dateRange]="shift"
-                             disabled="true"></app-minute-range-slider>
+<div class="calendar-grid">
+  <div class="calendar-day" *ngFor="let date of calendarDates">
+    <app-calendar-grid-day [calendarDate]="date" [selectedTemplate]="defaultTemplate" [availableTemplates]="availableTemplates" [employees]="employees"></app-calendar-grid-day>
   </div>
 </div>

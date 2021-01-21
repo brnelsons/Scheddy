@@ -1,6 +1,6 @@
 .day-of-week, .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(200px, 1fr));
 }
 
 .day-of-week {
@@ -10,36 +10,7 @@
 .calendar-day {
   min-height: 200px;
   padding: 10px;
-  border: #dddddd solid 1px;
-  background-color: #ffffff;
-}
-
-.sunday .calendar-day:first-child {
-  grid-column: 1;
-}
-
-.monday .calendar-day:first-child {
-  grid-column: 2;
-}
-
-.tuesday .calendar-day:first-child {
-  grid-column: 3;
-}
-
-.wednesday .calendar-day:first-child {
-  grid-column: 4;
-}
-
-.thursday .calendar-day:first-child {
-  grid-column: 5;
-}
-
-.friday .calendar-day:first-child {
-  grid-column: 6;
-}
-
-.saturday .calendar-day:first-child {
-  grid-column: 7;
+  box-shadow: 1px 1px #aaa;
 }
 
 .day {

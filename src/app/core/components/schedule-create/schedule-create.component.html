@@ -2,10 +2,10 @@
     <button mat-icon-button>
       <mat-icon>navigate_before</mat-icon>
     </button>
-    <div>{{datetime.format('MMMM')}}</div>
+    <div>{{datetime.format("MMMM YYYY")}}</div>
     <button mat-icon-button>
       <mat-icon>navigate_next</mat-icon>
     </button>
 </div>
 
-<app-calendar-grid [scheduleTemplates]="scheduleTemplates" [datetime]="datetime" [selectedTemplate]="defaultTemplate"></app-calendar-grid>
+<app-calendar-grid [datetime]="datetime"></app-calendar-grid>
