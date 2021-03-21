@@ -1,14 +1,90 @@
-<mat-tab-group>
-  <mat-tab label="Schedules">
-    Schedules
-  </mat-tab>
-  <mat-tab label="Create Schedule">
-    Create Schedule
-  </mat-tab>
-  <mat-tab label="Templates">
-    Schedule Templates
-  </mat-tab>
-  <mat-tab label="Create Template">
-    <app-schedule-template-create></app-schedule-template-create>
-  </mat-tab>
-</mat-tab-group>
+<h3>Schedule Builder</h3>
+<div style="overflow-x: scroll">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-flat-button color="primary" (click)="exportToCsv()">Export Schedule</button>
+  </div>
+
+  <form fxLayout="row" fxLayoutAlign="stretch center" (submit)="addEmployee(employeeName.value);employeeName.value = ''">
+    <mat-form-field fxFlex [appearance]="'standard'">
+      <mat-label>Add Employee</mat-label>
+      <input matInput #employeeName placeholder="Name" fxFlex>
+    </mat-form-field>
+    <button mat-icon-button color="primary" type="submit">
+      <mat-icon>add_box</mat-icon>
+    </button>
+  </form>
+
+  <div fxLayout="column" fxLayoutGap="20px">
+    <div *ngFor="let week of schedule" fxLayout="column" fxFlex="100" class="week-wrapper">
+      <div>Week {{week.number}}</div>
+      <div fxLayout="row" class="table-container">
+        <div class="table-cell">Employee</div>
+        <div class="table-cell">Sunday</div>
+        <div class="table-cell">Monday</div>
+        <div class="table-cell">Tuesday</div>
+        <div class="table-cell">Wednesday</div>
+        <div class="table-cell">Thursday</div>
+        <div class="table-cell">Friday</div>
+        <div class="table-cell">Saturday</div>
+        <div class="table-cell">Hours</div>
+      </div>
+      <div fxLayout="row" class="table-container" *ngFor="let employee of week.employees">
+        <div class="table-cell">
+          {{employee.name}}
+        </div>
+        <div class="table-cell">
+          <div fxLayout="column">
+            <app-time-range-selector [employee]="employee" [(timeRange)]="employee.sunday"></app-time-range-selector>
+          </div>
+        </div>
+        <div class="table-cell">
+          <div fxLayout="column">
+            <app-time-range-selector [employee]="employee" [(timeRange)]="employee.monday"></app-time-range-selector>
+          </div>
+        </div>
+        <div class="table-cell">
+          <div fxLayout="column">
+            <app-time-range-selector [employee]="employee" [(timeRange)]="employee.tuesday"></app-time-range-selector>
+          </div>
+        </div>
+        <div class="table-cell">
+          <div fxLayout="column">
+            <app-time-range-selector [employee]="employee" [(timeRange)]="employee.wednesday"></app-time-range-selector>
+          </div>
+        </div>
+        <div class="table-cell">
+          <div fxLayout="column">
+            <app-time-range-selector [employee]="employee" [(timeRange)]="employee.thursday"></app-time-range-selector>
+          </div>
+        </div>
+        <div class="table-cell">
+          <div fxLayout="column">
+            <app-time-range-selector [employee]="employee" [(timeRange)]="employee.friday"></app-time-range-selector>
+          </div>
+        </div>
+        <div class="table-cell">
+          <div fxLayout="column">
+            <app-time-range-selector [employee]="employee" [(timeRange)]="employee.saturday"></app-time-range-selector>
+          </div>
+        </div>
+        <div class="table-cell">{{employee.totalHours}}</div>
+      </div>
+      <div style="height: 10px"></div>
+    </div>
+  </div>
+</div>
+
+<!--<mat-tab-group>-->
+<!--  <mat-tab label="Schedules" fxLayout="column" fxLayoutGap="20px">-->
+<!--  -->
+<!--  </mat-tab>-->
+<!--  <mat-tab label="Create Schedule">-->
+<!--    Create Schedule-->
+<!--  </mat-tab>-->
+<!--  <mat-tab label="Templates">-->
+<!--    Schedule Templates-->
+<!--  </mat-tab>-->
+<!--  <mat-tab label="Create Template">-->
+<!--    <app-schedule-template-create></app-schedule-template-create>-->
+<!--  </mat-tab>-->
+<!--</mat-tab-group>-->

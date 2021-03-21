@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="space-between stretch">
+  <input type="checkbox" [(ngModel)]="timeRange.enabled" (ngModelChange)="employee.calculate()"/>
+  <select [disabled]="!timeRange.enabled" [(ngModel)]="timeRange.startTime" (ngModelChange)="calculate()" #startTime>
+    <option *ngFor="let time of times; let i = index" [value]="time.time">{{time.display}}</option>
+  </select>
+  <select [disabled]="!timeRange.enabled" [(ngModel)]="timeRange.endTime" (ngModelChange)="employee.calculate()" #endTime>
+    <option *ngFor="let time of times; let i = index" [value]="time.time">{{time.display}}</option>
+  </select>
+</div>

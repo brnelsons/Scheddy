@@ -1,0 +1,28 @@
+.table-cell {
+  min-width: 140px;
+}
+
+.table-cell:last-child {
+  overflow-x: hidden;
+  min-width: 60px;
+}
+
+.table-cell:first-child {
+  overflow-x: hidden;
+  min-width: 100px;
+}
+
+.table-container .table-cell {
+  border-bottom: 1px #454545 solid;
+  border-right: 1px #454545 solid;
+  padding: 4px;
+  flex: 1 1 100%;
+}
+
+.table-container .table-cell:first-child {
+  border-left: 1px #454545 solid;
+}
+
+//.week-wrapper .table-container:nth-child(2) .table-cell{
+//  border-top: 1px #454545 solid;
+//}
