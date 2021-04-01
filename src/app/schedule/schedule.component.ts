@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TimeRange} from '../../../model/TimeRange';
 import {CsvDataService} from '../core/services/csv-data.service';
-import {TimeRangeSelectorComponent} from '../core/components/time-range-selector/time-range-selector.component';
+import {DayOfTheWeek} from "../../../model/dayOfTheWeek";
 
 export class Employee {
   name: string;
@@ -12,7 +12,7 @@ export class Employee {
   thursday: TimeRange = new TimeRange();
   friday: TimeRange = new TimeRange();
   saturday: TimeRange = new TimeRange();
-  totalHours: number = 0;
+  totalHours = 0;
 
   parseTime(input: string): number {
     if (input === null || input === "") {
@@ -20,7 +20,7 @@ export class Employee {
     }
     const strings = input.split(":");
     if (strings.length != 2) return 0;
-    return (Number.parseInt(strings[0]) * 60) + Number.parseInt(strings[1])
+    return (Number.parseInt(strings[0]) * 60) + Number.parseInt(strings[1]);
   }
 
   calculateMinutesInRange(timeRange: TimeRange): number {
@@ -55,10 +55,21 @@ export class Week {
 export class ScheduleComponent implements OnInit {
   employeeNames: string[] = [
     'Lisa'
-  ]
+  ];
   weekCount: number;
   schedule: Week[];
   shifts: TimeRange[] = [];
+
+  startingDay: DayOfTheWeek = 'Monday';
+  days: DayOfTheWeek[] = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ];
 
   constructor(private csvExportService: CsvDataService) {
   }
@@ -70,19 +81,19 @@ export class ScheduleComponent implements OnInit {
       const week = new Week();
       week.employees = [];
       week.number = i + 1;
-      for (let employeeName of this.employeeNames) {
+      for (const employeeName of this.employeeNames) {
         const employee = new Employee();
         employee.name = employeeName;
-        week.employees.push(employee)
+        week.employees.push(employee);
       }
-      this.schedule.push(week)
+      this.schedule.push(week);
     }
   }
 
   addEmployee(name: string): void {
     if (this.employeeNames.findIndex(value => value === name) === -1) {
       this.employeeNames.push(name);
-      for (let week of this.schedule) {
+      for (const week of this.schedule) {
         const employee = new Employee();
         employee.name = name;
         week.employees.push(employee);
@@ -90,34 +101,24 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
-  exportToCsv() {
+  exportToCsv(): void {
     const rows = [];
 
-    for (let week of this.schedule) {
-      rows.push(["Week " + week.number]);
-      rows.push([
-        "Employee",
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Hours"
-      ])
-      for (let employee of week.employees) {
-        rows.push([
-          employee.name,
-          ScheduleComponent.formatTimeRange(employee.sunday),
-          ScheduleComponent.formatTimeRange(employee.monday),
-          ScheduleComponent.formatTimeRange(employee.tuesday),
-          ScheduleComponent.formatTimeRange(employee.wednesday),
-          ScheduleComponent.formatTimeRange(employee.thursday),
-          ScheduleComponent.formatTimeRange(employee.friday),
-          ScheduleComponent.formatTimeRange(employee.saturday),
-          employee.totalHours
-        ])
+    for (const week of this.schedule) {
+      rows.push(["Week " + week.number.toString()]);
+      const headers = ["Employee"];
+      for (const day of this.days) {
+        headers.push(day.toString());
+      }
+      headers.push("Hours");
+      rows.push(headers);
+      for (const employee of week.employees) {
+        const row = [employee.name];
+        for (const day of this.days) {
+          row.push(ScheduleComponent.formatTimeRange(employee[day.toLowerCase()]));
+        }
+        row.push(employee.totalHours.toString());
+        rows.push(row);
       }
     }
 
@@ -132,12 +133,12 @@ export class ScheduleComponent implements OnInit {
   }
 
   public static timeToDisplay(time: string): string {
-    let strings = time.split(":");
+    const strings = time.split(":");
     const hour = Number.parseInt(strings[0]);
     const minute = Number.parseInt(strings[1]);
-    let formattedMinute = minute < 10 ? "0" + minute : minute;
-    return hour <= 12
-      ? hour + ":" + formattedMinute + " AM"
-      : hour - 12 + ":" + formattedMinute + " PM"
+    const formattedMinute = minute < 10 ? "0" + minute.toString() : minute;
+    const formattedHour = hour <= 12 ? hour : hour - 12;
+    const ampm = hour <= 12 ? 'AM' : 'PM';
+    return `${formattedHour}:${formattedMinute} ${ampm}`;
   }
 }

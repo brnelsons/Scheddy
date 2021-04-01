@@ -1,5 +1,6 @@
 {
-  "productName": "angular-electron",
+  "productName": "LibreScheddy",
+  "buildVersion": "0.1.0",
   "directories": {
     "output": "release/"
   },
